@@ -67,10 +67,12 @@ pub fn derive_message(input: proc_macro::TokenStream) -> proc_macro::TokenStream
                 })
              }
          }
-         impl #name {
-            pub fn get_message_name_and_crc() -> String {
+        impl VppNamedMessage for #name {
+            fn get_message_name_and_crc() -> String {
                  String::from(#ident)
             }
+        }
+         impl #name {
             pub fn builder() -> #builder_ident{
                 #builder_ident{
                  #(#builder_init,)*
